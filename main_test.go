@@ -46,7 +46,7 @@ func TestSort(t *testing.T) {
 }
 
 func TestPushMessage(t *testing.T) {
-	session := New(DEFAULT_QUEUE_NAME, "amqp://guest:guest@localhost:5672/")
+	session := New(DEFAULT_QUEUE_NAME, "amqp://admin:admin@192.168.31.239:5672/")
 	fmt.Println("开始发送消息")
 	for i := 0; i < 96; i++ {
 		err := session.Push(NewMessage(strconv.Itoa(i+1000), "order.stock", "hello world"))
@@ -58,7 +58,7 @@ func TestPushMessage(t *testing.T) {
 }
 
 func TestStartServe(t *testing.T) {
-	session := New(DEFAULT_QUEUE_NAME, "amqp://guest:guest@localhost:5672/")
+	session := New(DEFAULT_QUEUE_NAME, "amqp://admin:admin@192.168.31.239:5672/")
 	defer session.Close()
 
 	//session.AddFunc("order.stock", func(s string) {
