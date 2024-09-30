@@ -10,9 +10,6 @@ This is a golang package for rabbitmq
 ```shell
 go get https://github.com/pyzxs/rmq@latest
 ```
-## License
-This client uses the same 2-clause BSD license as the original project.
-
 
 ## Example
 
