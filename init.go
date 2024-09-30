@@ -16,6 +16,7 @@ type IJob interface {
 func parseMessage(data []byte) (string, string) {
 	mp := map[string]string{}
 	err := json.Unmarshal(data, &mp)
+
 	if err != nil {
 		return "", ""
 	}
