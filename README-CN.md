@@ -1,14 +1,14 @@
-# go rabbitmq wrapper
+# golang实现的rabbitmq封装
 
-This is a golang package for rabbitmq 
+这是一个关于rabbitmq的封装包，实现了确认机制、事务机制和幂等性
 
-## Install
+## 安装
 
 ```shell
 go get https://github.com/pyzxs/rmq@latest
 ```
 
-## Example
+## 示例
 
 ```go
 package main
@@ -19,7 +19,7 @@ import (
 	"github.com/pyzxs/rmq"
 )
 
-// User  mode
+// User 用户模型
 type User struct {
 	Id     string
 	Name   string
@@ -27,18 +27,18 @@ type User struct {
 	Mobile string
 }
 
-// RegisterJob a consumer handle Job
+// RegisterJob 消费者处理消息Job
 type RegisterJob struct {
 }
 
-// JobHandle implement IJob interface{}
+// JobHandle 实现 IJob 接口
 func (r *RegisterJob) JobHandle(s string) {
 	u := User{}
 	_ = json.Unmarshal([]byte(s), &u)
 	fmt.Printf("%s register send email to %s: %s\n", u.Name, u.Email)
 }
 
-// JobSendSms handle func 
+// JobSendSms 消费者处理消息函数
 func JobSendSms() func(string) {
 	return func(s string) {
 		u := User{}
@@ -57,18 +57,18 @@ func main() {
 	}
 
 	ubyte, _ := json.Marshal(u)
-    
-	// init connection and channel
+
+	// 连接初始化，channel初始化等
 	session := rmq.New(rmq.DEFAULT_QUEUE_NAME, "amqp://admin:admin@192.168.31.239:5672/")
 
-	// add consumer handle method
+	// 添加消费者处理方法
 	session.AddFunc("user.register", JobSendSms())
 	session.AddJob("user.register", &RegisterJob{})
-    
-	// start a consumer 
+
+	// 启动一个消费者侦听服务
 	go session.Start()
 
-	// publisher send message
+	// 生产者发送消息
 	session.Push(rmq.NewMessage("122", "user.register", string(ubyte)))
 
 	<-forever
@@ -76,9 +76,9 @@ func main() {
 
 ```
 
-## idempotent
+## 幂等
 
-Idempotency means that an operation has the same effect when performed multiple times as it does only once
+幂等性意味着操作在多次执行时与仅执行一次时具有相同的效果。在项目中创建一个内存缓存，存放MessageId。已消费的消息拒绝
 
 ```go
 for msg := range stream {
