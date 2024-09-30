@@ -2,6 +2,8 @@
 
 这是一个关于rabbitmq的封装包，实现了确认机制、事务机制和幂等性
 
+[English](README.md) | [中文](README_ZH.md)
+
 ## 安装
 
 ```shell
