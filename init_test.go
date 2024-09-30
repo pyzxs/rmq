@@ -3,7 +3,6 @@ package rmq
 import (
 	"fmt"
 	"sort"
-	"strconv"
 	"testing"
 	"time"
 )
@@ -45,28 +44,28 @@ func TestSort(t *testing.T) {
 	t.Log(c.items)
 }
 
-func TestPushMessage(t *testing.T) {
-	session := New(DEFAULT_QUEUE_NAME, "amqp://admin:admin@192.168.31.239:5672/")
-	fmt.Println("开始发送消息")
-	for i := 0; i < 96; i++ {
-		err := session.Push(NewMessage(strconv.Itoa(i+1000), "order.stock", "hello world"))
-		if err != nil {
-			t.Error(err)
-		}
-	}
-	session.Close()
-}
-
-func TestStartServe(t *testing.T) {
-	session := New(DEFAULT_QUEUE_NAME, "amqp://admin:admin@192.168.31.239:5672/")
-	defer session.Close()
-
-	//session.AddFunc("order.stock", func(s string) {
-	//	t.Log("addfunc", s)
-	//})
-	session.AddJob("order.stock", &OrderJob{})
-	session.Start()
-}
+//func TestPushMessage(t *testing.T) {
+//	session := New(DEFAULT_QUEUE_NAME, "amqp://admin:admin@192.168.31.239:5672/")
+//	fmt.Println("开始发送消息")
+//	for i := 0; i < 96; i++ {
+//		err := session.Push(NewMessage(strconv.Itoa(i+1000), "order.stock", "hello world"))
+//		if err != nil {
+//			t.Error(err)
+//		}
+//	}
+//	session.Close()
+//}
+//
+//func TestStartServe(t *testing.T) {
+//	session := New(DEFAULT_QUEUE_NAME, "amqp://admin:admin@192.168.31.239:5672/")
+//	defer session.Close()
+//
+//	//session.AddFunc("order.stock", func(s string) {
+//	//	t.Log("addfunc", s)
+//	//})
+//	session.AddJob("order.stock", &OrderJob{})
+//	session.Start()
+//}
 
 type OrderJob struct {
 }
