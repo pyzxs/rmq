@@ -1,4 +1,6 @@
 # golang实现的rabbitmq封装
+[![Go Report Card](https://goreportcard.com/badge/github.com/pyzxs/rmq)](https://goreportcard.com/report/github.com/pyzxs/rmq)
+[![Go Reference](https://pkg.go.dev/badge/github.com/pyzxs/rmq.svg)](https://pkg.go.dev/github.com/pyzxs/rmq)
 
 这是一个关于rabbitmq的封装包，实现了确认机制、事务机制和幂等性
 

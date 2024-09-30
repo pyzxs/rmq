@@ -1,4 +1,6 @@
 # go rabbitmq wrapper
+[![Go Report Card](https://goreportcard.com/badge/github.com/pyzxs/rmq)](https://goreportcard.com/report/github.com/pyzxs/rmq)
+[![Go Reference](https://pkg.go.dev/badge/github.com/pyzxs/rmq.svg)](https://pkg.go.dev/github.com/pyzxs/rmq)
 
 This is a golang package for rabbitmq 
 
