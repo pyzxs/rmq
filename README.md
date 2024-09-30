@@ -2,6 +2,7 @@
 
 This is a golang package for rabbitmq 
 
+[English](README.md) | [中文](README_ZH.md)
 ## Install
 
 ```shell
