@@ -35,7 +35,7 @@ type RegisterJob struct {
 func (r *RegisterJob) JobHandle(s string) {
 	u := User{}
 	_ = json.Unmarshal([]byte(s), &u)
-	fmt.Printf("%s register send email to %s: %s\n", u.Name, u.Email)
+	fmt.Printf("%s register send email to %s\n", u.Name, u.Email)
 }
 
 // JobSendSms 消费者处理消息函数
@@ -43,7 +43,7 @@ func JobSendSms() func(string) {
 	return func(s string) {
 		u := User{}
 		_ = json.Unmarshal([]byte(s), &u)
-		fmt.Printf("%s register send sms to %s: %s\n", u.Name, u.Mobile)
+		fmt.Printf("%s register send sms to %s\n", u.Name, u.Mobile)
 	}
 }
 
