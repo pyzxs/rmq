@@ -5,6 +5,7 @@ import "encoding/json"
 const (
 	DEFAULT_QUEUE_NAME = "default"
 	MAX_CACHE_LEN      = 1000
+	DEFAULT_DSN_URL = "amqp://guest:guest@127.0.0.1:5672/"
 )
 
 type IJob interface {
