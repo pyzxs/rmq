@@ -46,7 +46,7 @@ var (
 // New 创建一个新的会话实例，并自动连接
 // 尝试连接到服务器。
 func New(name string, addr string) *Session {
-	
+
 	if addr == "" {
 		addr = DEFAULT_DSN_URL
 	}
