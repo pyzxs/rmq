@@ -47,7 +47,7 @@ func (u *UserRegisterJob) JobHandle(s string) {
 
 ```go
 // 具体业务中
-// Queue.NewMessage(id,"topic","daa") 消息ID， 业务主题，消息内容
-go session.Push(queue.NewMessage(unique.SnowFlaskID(1), "user.register", "测试数据"))
+// rmq.NewMessage(id,"topic","daa") 消息ID， 业务主题，消息内容
+go session.Push(rmq.NewMessage(unique.SnowFlaskID(1), "user.register", "测试数据"))
 ```
 
